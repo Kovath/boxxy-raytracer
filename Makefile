@@ -1,45 +1,52 @@
+# Boxxy Makefile - C++
+# by Kevin Yang
+#
+# A cross-platform c++ makefile
+
+
+
 # CONFIGURATION
 PROJECT := raytracer
-TESTBUILD := rtester 
 
 CC := g++
-CCFLAGS := -Ilib -Wall -O3
-LDFLAGS := 
+CCFLAGS := -Wall -O3
+LDFLAGS := -Ilib
 
 SRCFOLDER := src
 OBJFOLDER := obj
-TESTFOLDER := test
+#BINFOLDER :=
+# ok so plans to add feature to determine where executable goes
+
+
 
 # processing stuff
 SRC := $(wildcard $(SRCFOLDER)/*.cpp)
 OBJ := $(addprefix $(OBJFOLDER)/, $(notdir $(SRC:.cpp=.o)))
-TEST := $(wildcard $(TESTFOLDER)/*.cpp)
-TESTOBJ := $(filter-out obj/main.o, $(OBJ)) $(addprefix $(TESTFOLDER)/, $(notdir $(TEST:.cpp=.o)))
 
+# perform any OS specific reqs
 ifeq ($(OS), Windows_NT)
-	RM = del /F
-	DELETEOBJS = $(OBJFOLDER)\*.o $(TESTFOLDER)\*.o
+	RM = del /F /Q
 else
 	RM = rm -f
-	DELETEOBJS = $(OBJFOLDER)/*.o $(TESTFOLDER)/*.o
 endif
 
+
+
+
+
+# make options
 .PHONY: all clean build
-all: $(PROJECT)
+all: $(OBJFOLDER) $(PROJECT)
 
 clean:
-	$(RM) $(DELETEOBJS) $(PROJECT) $(TESTBUILD)
+	$(RM) $(OBJFOLDER)\* $(PROJECT)*
 	
 build: clean all
-	
-test: $(TESTBUILD)
-	
-# compile test build
-$(TESTBUILD): $(TESTOBJ)
-	$(CC) $(CCFLAGS) $^ -o $@ $(LDFLAGS) 
-$(TESTFOLDER)/%.o: $(TESTFOLDER)/%.cpp
-	$(CC) $(CCFLAGS) -c $< -o $@
-	
+
+# targets that need to be done before project compilation
+$(OBJFOLDER):
+	mkdir $@
+
 # compile targets
 $(PROJECT): $(OBJ)
 	$(CC) $(CCFLAGS) -o $@ $^ $(LDFLAGS)
