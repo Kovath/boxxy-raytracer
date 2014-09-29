@@ -35,17 +35,19 @@ endif
 
 
 # make options
-.PHONY: all clean build
+.PHONY: all clean* build
 all: $(OBJFOLDER) $(PROJECT)
 
 clean:
+	@$(RM) $(OBJFOLDER)\* $(PROJECT)*
+clean-output:
 	$(RM) $(OBJFOLDER)\* $(PROJECT)*
 	
 build: clean all
 
 # targets that need to be done before project compilation
 $(OBJFOLDER):
-	mkdir $@
+	@mkdir $@
 
 # compile targets
 $(PROJECT): $(OBJ)
