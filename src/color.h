@@ -6,15 +6,19 @@
 class Color {
 public:
 	// constructors
-	Color(uint8_t r, uint8_t g, uint8_t b);
+	Color(float r, float g, float b);
 
 	// access
-	uint8_t r(), g(), b();
+	float r() const;
+	float g() const;
+	float b() const;
 
 	// operators
-	Color operator+(const Color& a);
-	Color operator+=(const Color& a);
-
+	Color operator+=(const Color& color);
+	Color operator/=(const Color& color);
+	Color operator/=(const float n);
+	Color operator*=(const Color& color);
+	Color operator*=(const float n);
 
 private:
 	float r_value, g_value, b_value;
