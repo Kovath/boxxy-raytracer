@@ -3,12 +3,19 @@
 
 #include <list>
 #include <string>
+
+
+
+
+
 class RenderJobSetting;
+class RenderJobComponent;
 
 
 class RenderJob {
-private:
-	std::list<RenderJobSetting> settings;
+public:
+	RenderJobSetting get_setting(std::string setting_name);
+
 };
 
 
@@ -16,11 +23,14 @@ private:
 
 class RenderJobSetting {
 public:
-	
-private:
-	std::string component;
-	std::string setting;
+	std::string name;
+	std::string value;
 	std::list<std::string> parameters;
+};
+
+
+class RenderJobComponent {
+
 };
 
 #endif

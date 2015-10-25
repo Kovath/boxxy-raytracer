@@ -9,48 +9,36 @@
 PROJECT := raytracer
 
 CC := g++
-CCFLAGS := -Wall -O3
+CCFLAGS := -std=c++11 -Wall -O3
 LDFLAGS := -Ilib
 
-SRCFOLDER := src
-OBJFOLDER := obj
-#BINFOLDER :=
-# ok so plans to add feature to determine where executable goes
-
+SOURCES_FOLDER := src
+OBJECTS_FOLDER := obj
 
 
 # processing stuff
-SRC := $(wildcard $(SRCFOLDER)/*.cpp)
-OBJ := $(addprefix $(OBJFOLDER)/, $(notdir $(SRC:.cpp=.o)))
-
-# perform any OS specific reqs
-ifeq ($(OS), Windows_NT)
-	RM = del /F /Q
-else
-	RM = rm -f
-endif
-
-
+SOURCE_EXTENSION := .cpp
+SOURCES := $(shell find $(SOURCES_FOLDER) -name '*$(SOURCE_EXTENSION)')
+UNPREFIXED_SOURCES := $(patsubst $(SOURCES_FOLDER)/%, %, $(SOURCES))
+UNPREFIXED_FOLDERS := $(dir $(UNPREFIXED_SOURCES))
+OBJECTS := $(addprefix $(OBJECTS_FOLDER)/,$(UNPREFIXED_SOURCES:%$(SOURCE_EXTENSION)=%.o))
+OBJECTS_SUBFOLDERS := $(addprefix $(OBJECTS_FOLDER)/, $UNPREFIXED_FOLDERS)
 
 
 
 # make options
 .PHONY: all clean* build
-all: $(OBJFOLDER) $(PROJECT)
+all: $(PROJECT)
 
 clean:
-	@$(RM) $(OBJFOLDER)\* $(PROJECT)*
-clean-output:
-	$(RM) $(OBJFOLDER)\* $(PROJECT)*
-	
+	@rm -rf $(OBJECTS_FOLDER)/* $(PROJECT)*
 build: clean all
 
-# targets that need to be done before project compilation
-$(OBJFOLDER):
-	@mkdir $@
 
 # compile targets
-$(PROJECT): $(OBJ)
+$(PROJECT): $(OBJECTS)
 	$(CC) $(CCFLAGS) -o $@ $^ $(LDFLAGS)
-$(OBJFOLDER)/%.o: $(SRCFOLDER)/%.cpp
+$(OBJECTS_FOLDER)/%.o: $(SOURCES_FOLDER)/%.cpp
+	@mkdir -p $(dir $@)
 	$(CC) $(CCFLAGS) -o $@ -c $< $(LDFLAGS)
+
