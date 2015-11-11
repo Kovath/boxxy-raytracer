@@ -17,7 +17,7 @@ public:
 
 	// utility render functions, will reroute to main render
 	void render(std::string filename);
-	void render(std::istream stream);
+	void render(std::istream& stream);
 
 private:
 };

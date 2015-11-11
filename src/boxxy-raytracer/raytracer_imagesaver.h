@@ -6,7 +6,9 @@
 
 class BoxxyRayTracerImageSaver {
 public:
-	virtual void saveImage(RenderedImage image, std::string filename);
+	virtual ~BoxxyRayTracerImageSaver() {}
+
+	virtual void saveImage(RenderedImage& image, std::string filename) {}
 };
 
 #endif

@@ -1,7 +1,8 @@
-#include <iostream>
-using namespace std;
+#include "boxxy-raytracer/boxxyraytracer.h"
 
 int main(int argc, char** argv) {
-	cout << "Hello World!" << endl;	
+
+	BoxxyRayTracer raytracer;
+	raytracer.render("image1.rrf"); // Raytracer Render File
 	return 0;
 }

@@ -6,7 +6,9 @@
 
 class BoxxyRayTracerEngine {
 public:
-	virtual RenderedImage render(Scene& scene);
+	virtual ~BoxxyRayTracerEngine() {}
+
+	virtual RenderedImage* render(Scene& scene) { return new RenderedImage(); }
 };
 
 #endif

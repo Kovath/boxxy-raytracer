@@ -6,8 +6,10 @@
 
 class BoxxyRayTracerSceneGenerator {
 public:
+	virtual ~BoxxyRayTracerSceneGenerator() {}
+
 	// abstract to parsing any stream
-	virtual Scene generateScene(RenderJob job);
+	virtual Scene* generateScene(RenderJob& job) { return new Scene(); }
 };
 
 #endif

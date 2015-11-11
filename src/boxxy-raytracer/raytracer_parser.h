@@ -6,8 +6,10 @@
 
 class BoxxyRayTracerParser {
 public:
+	virtual ~BoxxyRayTracerParser() {}
+
 	// abstract to parsing any stream
-	virtual RenderJob parse(std::istream stream);
+	virtual RenderJob* parse(std::istream& stream);
 };
 
 #endif
