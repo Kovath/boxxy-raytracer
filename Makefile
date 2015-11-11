@@ -10,7 +10,7 @@ PROJECT := raytracer
 
 CC := g++
 CCFLAGS := -std=c++11 -Wall -O3
-LDFLAGS := -Ilib
+LDFLAGS := -Ilib -Isrc
 
 SOURCES_FOLDER := src
 OBJECTS_FOLDER := obj
