@@ -1,7 +1,7 @@
 #ifndef BOXXY_SCENELIGHT_H
 #define BOXXY_SCENELIGHT_H
 
-#include "../color.h"
+#include <raytracer/color.h>
 #include "sceneelement.h"
 
 class SceneLight: public SceneElement {

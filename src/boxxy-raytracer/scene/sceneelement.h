@@ -1,7 +1,7 @@
 #ifndef BOXXY_SCENEELEMENT_H
 #define BOXXY_SCENEELEMENT_H
 
-#include "../ray.h"
+#include <raytracer/ray.h>
 
 class SceneElement {
 public:
@@ -9,9 +9,9 @@ public:
 	virtual float ray_hit(Ray ray) { return false; }
 
 	// occupies space in the scene
-	virtual bool is_object();
+	virtual bool is_object() { return false; }
 	// emits light in the scene
-	virtual bool is_light();
+	virtual bool is_light() { return false; }
 };
 
 #endif

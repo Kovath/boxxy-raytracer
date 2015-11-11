@@ -1,8 +1,8 @@
 #ifndef BOXXY_BOXXYRAYTRACER_H
 #define BOXXY_BOXXYRAYTRACER_H
 
-#include "raytracer.h"
-#include "renderjob.h"
+#include <raytracer/raytracer.h>
+#include <raytracer/renderjob.h>
 
 class BoxxyRayTracer: public RayTracer {
 public:

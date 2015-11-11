@@ -1,5 +1,4 @@
 #include <iostream>
-#include "boxxyraytracer.h"
 using namespace std;
 
 int main(int argc, char** argv) {
