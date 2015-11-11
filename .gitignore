@@ -22,4 +22,7 @@
 raytracer
 
 
+# RayTracer Render Files
+**.rrf
+
 lib*
