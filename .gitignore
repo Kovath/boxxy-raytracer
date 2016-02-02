@@ -21,8 +21,10 @@
 **.app
 raytracer
 
-
 # RayTracer Render Files
 **.rrf
 
 lib*
+
+# Never ignore src`
+!src/**
